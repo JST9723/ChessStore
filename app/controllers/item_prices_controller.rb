@@ -1,4 +1,5 @@
 class ItemPricesController < ApplicationController
+  before_action :check_login
   def index
     @active_items = Item.active.alphabetical.to_a
   end
@@ -22,5 +23,5 @@ class ItemPricesController < ApplicationController
   def item_price_params
     params.require(:item_price).permit(:item_id, :price, :category)
   end
-  
+
 end
