@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :item do
     name "Vinyl Chess Board - Green & White"
     description "These Vinyl Chess Boards are just what their name implies - a good basic chess board which meets all tournament standards. Board measures 20x20 inches with 2.25 inch square and all boards have clear and legible algebraic notation."
-    # picture nil
+    picture "/public/img/board1.png"
     color "green/white"
     category "boards"
     weight 0.5
@@ -18,7 +18,7 @@ FactoryGirl.define do
     start_date Date.current
     end_date nil
   end
-  
+
   factory :user do
     first_name "Ed"
     last_name "Gruberman"
