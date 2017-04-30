@@ -210,7 +210,7 @@ $accordion-content-padding: 1rem;
 // 8. Accordion Menu
 // -----------------
 
-$accordionmenu-arrows: true;
+$accordionmenu-s: true;
 $accordionmenu-arrow-color: $primary-color;
 $accordionmenu-arrow-size: 6px;
 
@@ -318,7 +318,7 @@ $closebutton-color-hover: $black;
 // -------------
 
 $drilldown-transition: transform 0.15s linear;
-$drilldown-arrows: true;
+$drilldown-s: true;
 $drilldown-arrow-color: $primary-color;
 $drilldown-arrow-size: 6px;
 $drilldown-background: $white;
@@ -342,7 +342,7 @@ $dropdown-sizes: (
 // -----------------
 
 $dropdownmenu-arrows: true;
-$dropdownmenu-arrow-color: $white;
+$dropdownmenu-arrow-color: #818181;
 $dropdownmenu-arrow-size: 4px;
 $dropdownmenu-min-width: 200px;
 $dropdownmenu-background: $white;
@@ -613,7 +613,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5;
-$topbar-background: $black;
+$topbar-background: $white;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.0 0rem 0.0 0;
 $topbar-input-width: 200px;

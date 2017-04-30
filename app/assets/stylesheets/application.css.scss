@@ -14,6 +14,7 @@
 //= require foundation_and_overrides
 
  */
+
  .tl_name {
   width: 225px;
   display: block;
@@ -66,7 +67,7 @@
   margin-top: 15px;
   padding-top: 0px;
   padding-bottom: 15px;
-  background-color:#ffffff;
+  background-color:#fff;
   color: #6493ba;
   text-align: center;
 }
@@ -112,38 +113,47 @@ label {
 
 
 .top-bar {
-  font-family: Roboto, sans-serif;
-  font-family: Arial,sans-serif;
+  padding: 0px 15px 0px 95px;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: bold;
+  font-size: 14px;
+  color: #4c4c4c;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(7,7,7,0.08);
 }
+
+// .menu vertical {
+//   box-shadow: 0 1px 1px rgba(7,7,7,0.08);
+// }
 
 .top-bar li{
   padding: 0px 15px 0px 15px
 }
 
+.data-dropdown-menu {
+  padding: 0px 20px 0px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .08);
+  background-color: #fff;
+}
+
+.data-dropdown-menu li {
+  padding: 10px;
+}
+
+.data-dropdown-menu a:hover{
+		$dropdownmenu-arrow-color: #FF9900;}
+
+.top-bar-right{
+  padding: 18px 0px 10px 0px
+}
+
 .top-bar a {
-  color: #fefefe;
+  color:  #818181;
   text-decoration: none;
 }
 
 .top-bar a:hover {
-  color:  #e6e6e6;
-}
-
-.top-bar-left {
-  padding: 10px 15px 10px 95px;
-  font-size: 14px;
-  color: #838383;
-}
-
-.top-bar-right {
-  padding: 15px 45px 15px 15px;
-  font-size: 14px;
-  color: #fefefe;
-}
-
-.top-bar-right a:hover {
-  color:  #e6e6e6;
-  text-decoration: underline;
+  color: #FF9900;
 }

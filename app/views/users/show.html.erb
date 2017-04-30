@@ -1,0 +1,21 @@
+<h2>My Order History</h2>
+<% unless @orders.nil? || @orders.empty? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="100">Order Date</th>
+        <th width="100">Grand Total</th>
+        <th width="300">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.date %></td>
+          <td><%= number_to_currency order.grand_total %></td>
+          <td>Shipped</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,24 +1,46 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <!-- <li><%= link_to image_tag('cylon_icon.png'), home_path %></li> -->
-      <li><%= link_to "HOME", home_path %></li>
-      <li>
-        <%= link_to "ITEMS", items_path %>
-        <ul class="menu vertical">
-          <li><%= link_to "Item List", items_path %></li>
-          <li><%= link_to "Reorder List", home_path %></li>
-          <li><%= link_to "Add an Item", new_item_path %></li>
-        </ul>
-      </li>
-      <li><%= link_to "PURCHASES", purchases_path %></li>
-      <li><%= link_to "PRICES", item_prices_path %></li>
-    </ul>
+<div data-sticky-container>
+  <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><%= link_to image_tag('cylon_icon.png'), home_path %></li>
+        <li><%= link_to "HOME", home_path %></li>
+        <li>
+          <%= link_to "ITEMS", items_path %>
+          <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+            <div class ="data-dropdown-menu">
+              <li><%= link_to "Item List", items_path %></li>
+              <li><%= link_to "Reorder List", home_path %></li>
+              <li><%= link_to "Add an Item", new_item_path %></li>
+            </div>
+          </ul>
+        </li>
+        <li><%= link_to "PURCHASES", purchases_path %></li>
+        <li><%= link_to "PRICES", item_prices_path %></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+     <ul class="dropdown menu" data-dropdown-menu>
+       <% if logged_in? %>
+          <li>
+            <%= link_to "Welcome, #{current_user.first_name}", user_path(current_user) %>
+            <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+              <div class ="data-dropdown-menu">
+                <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                <li><%= link_to "Order History", user_path(current_user) %></li>
+              </div>
+            </ul>
+          </li>
+          <li><%= link_to "Logout", logout_path %></li>
+
+            <li><%= link_to "$" + (cart_total).to_s + " ("+ (current_cart).size.to_s + " items)" %></li>
+            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+
+
+        <% else %>
+         <li><%= link_to 'LOG IN', login_path %></li>
+         <li><%= link_to 'SIGN UP', new_user_path %></li>
+       <% end %>
+     </ul>
+   </div>
   </div>
-  <div class="top-bar-right">
-   <ul class="menu">
-     <li><%= link_to 'SIGN IN',  %></li>&nbsp;&nbsp;::&nbsp;&nbsp;
-     <li><%= link_to 'REGISTER',  %></li>
-   </ul>
- </div>
 </div>

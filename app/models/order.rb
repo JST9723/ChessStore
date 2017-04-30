@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   # get module to help with some functionality
   include ChessStoreHelpers::Validations
   include ChessStoreHelpers::Shipping
+  include ChessStoreHelpers::Cart
   require 'base64'
 
   # Relationships
@@ -60,7 +61,7 @@ class Order < ActiveRecord::Base
   # after_destroy :remove_unshipped_order_items
   # after_rollback :remove_remaining_unshipped_order_items
   after_rollback :remove_unshipped_order_items
-  
+
   private
   def user_is_active_in_system
     is_active_in_system(:user)
@@ -69,7 +70,7 @@ class Order < ActiveRecord::Base
   def school_is_active_in_system
     is_active_in_system(:school)
   end
-  
+
   def set_date_if_not_given
     unless self.date && self.date.is_a?(Date)
       self.date = Date.current
@@ -94,7 +95,7 @@ class Order < ActiveRecord::Base
   end
 
   def expiration_date_is_valid
-    return false if self.credit_card_number.nil? 
+    return false if self.credit_card_number.nil?
     if self.expiration_year.nil? || self.expiration_month.nil? || credit_card.expired?
       errors.add(:expiration_year, "is expired")
       return false
@@ -111,7 +112,7 @@ class Order < ActiveRecord::Base
   def remove_unshipped_order_items
     self.order_items.unshipped.each{ |oi| oi.destroy } unless destroyable.nil?
   end
-  
+
   # def remove_remaining_unshipped_order_items
   #   if !destroyable.nil? && destroyable == false
   #     remove_unshipped_order_items

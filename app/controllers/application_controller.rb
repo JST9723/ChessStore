@@ -1,10 +1,8 @@
 class ApplicationController < ActionController::Base
+  include ChessStoreHelpers::Cart
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  # a custom module to handle some issues with dates
-  include DateFormatter
 
   # just show a flash message instead of full CanCan exception
   rescue_from CanCan::AccessDenied do |exception|
@@ -16,8 +14,19 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do |exception|
     render template: 'errors/not_found'
   end
-  
+
+  def current_cart
+    @current_cart ||= session[:cart] if session[:cart]
+  end
+  helper_method :current_cart
+
+  def cart_total
+    calculate_cart_items_cost
+  end
+  helper_method :cart_total
+
   private
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -29,6 +38,6 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def check_login
-    redirect_to login_url, alert: "You need to log in to view this page." if current_user.nil?
+    redirect_to new_session_url, alert: "You need to log in to view this page." if current_user.nil?
   end
 end

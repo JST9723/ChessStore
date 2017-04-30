@@ -1,4 +1,4 @@
-<% unless items.nil? || items.empty? %>
+<!-- <% unless items.nil? || items.empty? %>
   <h5><%= item_type.capitalize %></h5>
   <table class="table table-striped">
     <thead>
@@ -18,4 +18,18 @@
       <% end %>
     </tbody>
   </table>
+<% end %> -->
+
+<% unless items.nil? || items.empty? %>
+  <h5><%= item_type.capitalize %></h5>
+  <div class="row small-up-2 medium-up-3 large-up-4">
+    <% items.each do |item| %>
+      <div class="column column-block">
+        <img src="//placehold.it/600x600" class="thumbnail" alt="">
+        <p><%= link_to item.name, item_path(item) %></p>
+        <p><%= number_to_currency item.current_price %></p>
+        <!-- <li><%= item.inventory_level %></li> -->
+      </div>
+      <% end %>
+  </div>
 <% end %>
