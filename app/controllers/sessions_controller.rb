@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
    #before_action :check_login, only: [:edit, :update, :destroy]
 
+   include ChessStoreHelpers::Cart
+
+
    def new
    end
 
@@ -25,4 +28,21 @@ class SessionsController < ApplicationController
      session[:cart] = nil
      redirect_to home_path, notice: "Logged out!"
    end
+
+   def add_to_cart
+     add_item_to_cart(params[:id])
+     redirect_to items_path
+   end
+
+   def remove_from_cart
+     remove_item_from_cart(params[:id])
+     redirect_to cart_items_path
+   end
+
+   def cart_items
+     @cart = current_cart
+     @order_items = get_list_of_items_in_cart
+
+   end
+
  end

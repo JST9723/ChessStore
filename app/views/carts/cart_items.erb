@@ -1,0 +1,43 @@
+<% unless @order_items.nil? || @order_items.empty? %>
+ </br>
+  <% if (current_cart).size == 1 %>
+    <h5>YOUR SHOPPING CART CONTAINS:<%= (current_cart).size.to_s %> PRODUCT</h5>
+  <% else %>
+    <h5>YOUR SHOPPING CART CONTAINS:<%= (current_cart).size.to_s %> PRODUCTS</h5>
+  <% end %>
+  </br>
+  <table class="cart-table" width="400" style="width:90%">
+    <!-- <thead> -->
+      <tr>
+        <th width="100" align="center">Product</th>
+        <th width="100">Quality</th>
+        <th width="100">Product Name</th>
+        <th width="50">Price</th>
+        <th width="50">Remove</th>
+      </tr>
+    <!-- </thead> -->
+    <!-- <tbody> -->
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= link_to item_path(order_item.item) do %>
+          <img src="//placehold.it/100x100" class="thumbnail" alt=""><% end %></td>
+          <td>
+            <% if (order_item.quantity > 1) %>
+            <%= link_to subtract_from_cart_path(order_item.item) do %>
+              <span class="glyphicon glyphicon-minus" aria-hidden="true"></span><% end %>
+            <% end %>
+            <div class="entry value">
+              <span><%= order_item.quantity %></span>
+            </div>
+            <%= link_to update_add_to_cart_path(order_item.item) do %>
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><% end %>
+          </td>
+          <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+          <td><%= number_to_currency(order_item.item.current_price) %></td>
+          <td><%= link_to remove_from_cart_path(order_item.item) do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><% end %></td>
+        </tr>
+      <% end %>
+    <!-- </tbody> -->
+  </table>
+<% end %>

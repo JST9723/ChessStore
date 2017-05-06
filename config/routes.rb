@@ -21,5 +21,9 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
-
+  get 'add_to_cart/:id' => 'sessions#add_to_cart', :as => :add_to_cart
+  get 'remove_from_cart/:id' => 'carts#remove_from_cart', :as => :remove_from_cart
+  get 'subtract_from_cart/:id' => 'carts#subtract_from_cart', :as => :subtract_from_cart
+  get 'update_add_to_cart/:id' => 'carts#update_add_to_cart', :as => :update_add_to_cart
+  get 'cart_items' => 'carts#cart_items', :as => :cart_items
 end

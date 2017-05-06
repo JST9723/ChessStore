@@ -1,3 +1,5 @@
-
-<%# render :partial => 'general_home' %>
-<%= render :partial => 'reorder_list' %>
+<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+  <%= render :partial => 'reorder_list' %>
+<% else %>
+  <%= render :partial => 'general_home' %>
+<% end %>

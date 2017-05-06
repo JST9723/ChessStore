@@ -7,12 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- cart -->
-    <script src="js/simpleCart.min.js"></script>
-    <!-- cart -->
-
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script> -->
+
+    <script>
+    function AddToCart(item_id) {
+        add_item_to_cart(item_id)
+    }
+    </script>
 
     <title>Chess Warehouse :: <%= controller.controller_name.capitalize %></title>
     <%= stylesheet_link_tag    "application" %>

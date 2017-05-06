@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      session[:cart] = Hash.new
       redirect_to home_path, notice: "Thank you for signing up!"
     else
       flash[:error] = "This user could not be created."

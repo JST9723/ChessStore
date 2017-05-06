@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   def cart_total
-    calculate_cart_items_cost
+    unless session[:cart].nil?
+      calculate_cart_items_cost.to_f.round(2)
+    end
   end
   helper_method :cart_total
 

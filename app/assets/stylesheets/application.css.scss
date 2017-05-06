@@ -90,9 +90,16 @@ table {
   border-collapse:collapse;
 }
 
-table th.centered, table td.centered {
-    text-align: center;
+
+th {
+  text-align: center;
 }
+
+td {
+  text-align: center;
+}
+
+
 
 .note {
   font-style: italic;
@@ -156,4 +163,30 @@ label {
 
 .top-bar a:hover {
   color: #FF9900;
+}
+
+h5 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.value {
+    cursor: default;
+    width: 40px;
+    height: 40px;
+    padding: 8px 0px;
+    color: #A9A9A9;
+    line-height: 24px;
+    border: 1px solid #E5E5E5;
+    background-color: #E5E5E5;
+    text-align: center;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.cart-table, th,td {
+   border: 1px solid #E5E5E5;
+}
+
+.cart-table, td {
+  background-color: #fff;
 }

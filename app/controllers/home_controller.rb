@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  include ChessStoreHelpers::Cart
   def home
     @items_to_reorder = Item.need_reorder.alphabetical.to_a
   end
@@ -11,5 +12,5 @@ class HomeController < ApplicationController
 
   def privacy
   end
-  
+
 end

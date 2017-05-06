@@ -6,6 +6,7 @@
         <li><%= link_to "HOME", home_path %></li>
         <li>
           <%= link_to "ITEMS", items_path %>
+          <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
           <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
             <div class ="data-dropdown-menu">
               <li><%= link_to "Item List", items_path %></li>
@@ -13,9 +14,12 @@
               <li><%= link_to "Add an Item", new_item_path %></li>
             </div>
           </ul>
+          <% end %>
         </li>
-        <li><%= link_to "PURCHASES", purchases_path %></li>
-        <li><%= link_to "PRICES", item_prices_path %></li>
+        <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+          <li><%= link_to "PURCHASES", purchases_path %></li>
+          <li><%= link_to "PRICES", item_prices_path %></li>
+        <% end %>
       </ul>
     </div>
     <div class="top-bar-right">
@@ -31,14 +35,15 @@
             </ul>
           </li>
           <li><%= link_to "Logout", logout_path %></li>
-
-            <li><%= link_to "$" + (cart_total).to_s + " ("+ (current_cart).size.to_s + " items)" %></li>
-            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-
+            <% unless session[:cart].nil? %>
+            <li><%= link_to cart_items_path do %>
+              <%= "$" + (cart_total).to_s + " ("+ (current_cart).size.to_s + " items)" %>
+              <span class="glyphicon glyphicon-shopping-cart"></span><% end %></li>
+            <% end %>
 
         <% else %>
          <li><%= link_to 'LOG IN', login_path %></li>
-         <li><%= link_to 'SIGN UP', new_user_path %></li>
+         <li><%= link_to 'SIGN UP', signup_path %></li>
        <% end %>
      </ul>
    </div>
