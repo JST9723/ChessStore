@@ -3,20 +3,20 @@
 <% else %>
   <h4>Current Item Prices</h4>
   <table class="table table-striped">
-    <thead>
+    <!-- <thead> -->
       <tr>
         <th width="225">Item</th>
         <th width="150">Price</th>
       </tr>
-    </thead>
-    <tbody>
+    <!-- </thead>
+    <tbody> -->
       <% @active_items.each do |item| %>
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= item.current_price.nil? ? 'N/A' : number_to_currency(item.current_price) %></td>
         </tr>
       <% end %>
-    </tbody>
+    <!-- </tbody> -->
   </table>
 <% end %>
 <p>&nbsp;</p>

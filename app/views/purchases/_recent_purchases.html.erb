@@ -3,14 +3,14 @@
 <% else %>
   <h4>Recent Purchases</h4>
   <table class="table table-striped">
-    <thead>
+    <!-- <thead> -->
       <tr>
         <th width="225">Item</th>
         <th width="150">Quantity</th>
         <th width="150">Date</th>
       </tr>
-    </thead>
-    <tbody>
+    <!-- </thead>
+    <tbody> -->
       <% @purchases.each do |purchase| %>
         <tr>
           <td><%= link_to purchase.item.name, item_path(purchase.item) %></td>
@@ -18,7 +18,7 @@
           <td><%= purchase.date.strftime('%m/%d/%y') %></td>
         </tr>
       <% end %>
-    </tbody>
+    <!-- </tbody> -->
   </table>
 <% end %>
 <p>&nbsp;</p>

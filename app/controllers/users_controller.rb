@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # authorize_resource
 
+  def index
+    @users = User.active.alphabetical
+    @inactive_users = User.inactive.alphabetical
+  end
+
   def new
     @user = User.new
   end
@@ -11,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @orders = @user.orders.chronological.to_a
   end
 
   def create

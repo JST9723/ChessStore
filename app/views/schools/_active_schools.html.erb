@@ -1,13 +1,15 @@
 <% if @schools.empty? %>
   <h4>No schools at this time.</h4>
 <% else %>
-  <h4>List of Schools</h4><br>
-  <table class="table table-striped" style="width:80%">
+  <h3>List of Schools</h3><br>
+  <table class="table table-striped" style="width:85%">
     <!-- <thead> -->
       <tr>
-        <th width="120">Name</th>
-        <th width="120">Street</th>
+        <th width="150">Name</th>
+        <th width="150">Street</th>
         <th width="50">Zip</th>
+        <th width="30">Edit</th>
+        <th width="30">Remove</th>
       </tr>
     <!-- </thead>
     <tbody> -->
@@ -16,6 +18,12 @@
           <td><%= link_to school.name, school_path(school) %></td>
           <td><%= school.street_1 %></td>
           <td><%= school.zip %></td>
+          <td><%= link_to edit_school_path(school) do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span><% end %>
+          </td>
+          <td><%= link_to school_path(school), method: :delete, data: {confirm: "Are you sure you want to permanently delete this school"} do %>
+            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span><% end %>
+          </td>
         </tr>
       <% end %>
     <!-- </tbody> -->
