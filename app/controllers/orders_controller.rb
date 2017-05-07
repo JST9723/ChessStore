@@ -2,9 +2,14 @@ class OrdersController < ApplicationController
   include ChessStoreHelpers::Cart
 
   before_action :check_login
+  before_action :set_order, only: [:show,:edit, :update,:destroy]
 
   def index
-    @orders = Order.all
+    @orders = Order.chronological
+  end
+
+  def show
+    @order_items = @order.order_items
   end
 
   def new
@@ -12,6 +17,45 @@ class OrdersController < ApplicationController
   end
 
   def edit
+  end
+
+  def create
+    @order = Order.new(order_params)
+    @order.date = Date.current
+    @order.user_id = current_user.id
+    save_each_item_in_cart(@order)
+    @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
+    if @order.save
+      redirect_to order_path(@order), notice: "Successfully placing the order!"
+    else
+      flash[:error] = "This order could not be created."
+      render action: 'new'
+    end
+  end
+
+  def update
+    if @order.update_attributes(order_params)
+      flash[:notice] = "This order is updated."
+      redirect_to @order
+    else
+      flash[:error] = "This order could not be updated."
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @order.destroy
+    redirect_to orders_path, notice: "Successfully removed this order from the system."
+  end
+
+
+  private
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  def order_params
+      params.require(:order).permit(:school_id, :user_id, :date, :grand_total, :payment_receipt)
   end
 
 

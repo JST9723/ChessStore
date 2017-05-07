@@ -27,6 +27,9 @@
         <% if can? :read, School %>
           <li><%= link_to "SCHOOLS", schools_path %></li>
         <% end %>
+        <% if can? :read, Order %>
+          <li><%= link_to "ORDERS", orders_path %></li>
+        <% end %>
       </ul>
     </div>
     <div class="top-bar-right">

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :schools
+  resources :orders
   get 'user/edit' => 'users#edit', :as => :edit_current_user
   get 'order/cart' => 'order#get_list_of_items_in_cart', :as => :get_items_in_cart
   get 'signup' => 'users#new', :as => :signup

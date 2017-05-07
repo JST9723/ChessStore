@@ -1,0 +1,20 @@
+<h4>All Order Items</h4><br>
+<table class="table table-striped" style="width:80%">
+    <tr>
+      <th width="150">Item Name</th>
+      <th width="50">Quantity</th>
+      <th width="150">Shipped On</th>
+    </tr>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+        <td><%= order_item.quantity %></td>
+        <% if order_item.shipped_on.nil? || order_item.shipped_on.blank? %>
+          <td>NA</td>
+        <% else %>
+          <td><%= order_item.shipped_on.strftime('%m/%d/%y') %></td>
+        <% end %>
+      </tr>
+    <% end %>
+</table>
+<p>&nbsp;</p>

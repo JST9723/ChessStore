@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <b>Phone</b>: <%= @user.phone? ? 'N/A' : @user.phone %>
+  <b>Phone</b>: <%= @user.phone.nil? ? 'N/A' : @user.phone %>
 </p>
 
 <p>

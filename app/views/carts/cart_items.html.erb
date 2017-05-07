@@ -33,6 +33,8 @@
             <% if (order_item.quantity > 1) %>
             <%= link_to subtract_from_cart_path(order_item.item) do %>
               <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span><% end %>
+            <% else %>
+              <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
             <% end %>
             <div class="entry value">
               <span><%= order_item.quantity %></span>
@@ -50,5 +52,9 @@
   <div class="checkout-right-basket">
 		<%= link_to items_path, :class => "button" do %>
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping<% end %>
+	</div>
+  <div class="checkout-button">
+		<%= link_to new_order_path, :class => "button" do %>
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Check Out<% end %>
 	</div>
 <% end %>

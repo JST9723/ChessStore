@@ -24,6 +24,7 @@ class SchoolsController < ApplicationController
     if @school.save
       redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
     else
+      flash[:error] = "This school could not be created."
       render action: 'new'
     end
   end
