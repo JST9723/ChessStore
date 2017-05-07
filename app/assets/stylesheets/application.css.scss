@@ -122,7 +122,7 @@ label {
 .top-bar {
   padding: 0px 15px 0px 45px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   font-size: 14px;
   color: #4c4c4c;
@@ -219,4 +219,34 @@ h5 {
 
 #product h5 span{
   color:#FF9900;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.glyphicon {
+    font-size: 15px;
+}
+
+.glyphicon:hover{
+  color:#818181;
+}
+
+.checkout-right-basket {
+  float:right;
+  margin-right: 100px;
+}
+
+.checkout-right-basket a{
+  border-color: black;
+  background-color: black;
+  color:white;
+  font-size: 19px;
+}
+
+.checkout-right-basket a:hover{
+  border-color:#FF9900;
+  background-color: #FF9900;
+  color:white;
 }
