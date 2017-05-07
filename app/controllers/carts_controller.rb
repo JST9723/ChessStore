@@ -13,6 +13,11 @@ class CartsController < ApplicationController
     @cart_items = current_cart
   end
 
+  def red_add_to_cart
+    add_item_to_cart(params[:id])
+    redirect_to red_items_path
+  end
+
   def remove_from_cart
     remove_item_from_cart(params[:id])
     redirect_to cart_items_path

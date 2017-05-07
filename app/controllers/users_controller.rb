@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(current_user)
+    if @user.update_attributes(user_params)
       flash[:notice] = "#{@user.proper_name} is updated."
       redirect_to @user
     else
@@ -42,10 +42,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      if current_user && current_user.role?(:admin)
         params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :role, :active)
-      else
-        params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :password_confirmation, :role, :active)
-      end
     end
 end

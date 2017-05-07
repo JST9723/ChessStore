@@ -1,5 +1,8 @@
-<% unless @order_items.nil? || @order_items.empty? %>
- </br>
+</br>
+<% if @order_items.nil? || @order_items.empty? %>
+  <h5>YOU CURRENTLY HAVE NO ITEM IN YOUR CART</h5></br>
+  <p><%= link_to 'Check Our Products', items_path, :class => "button" %></p>
+<% else %>
   <% if (current_cart).size == 1 %>
     <h5>YOUR SHOPPING CART CONTAINS:<%= (current_cart).size.to_s %> PRODUCT</h5>
   <% else %>
@@ -39,5 +42,6 @@
         </tr>
       <% end %>
     <!-- </tbody> -->
-  </table>
+  </table><br></br>
+  <p><%= link_to 'Continue Shopping', items_path, :class => "button" %></p>
 <% end %>

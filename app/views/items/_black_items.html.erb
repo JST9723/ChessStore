@@ -1,0 +1,16 @@
+<% unless @black_items.empty? %>
+    <h3>Black Items</h3>
+    <div class="row small-up-2 medium-up-3 large-up-4">
+      <% @black_items.each do |item| %>
+        <div class="column column-block">
+          <img src="//placehold.it/600x600" class="thumbnail" alt="">
+          <p><%= link_to item.name, item_path(item) %></p>
+          <p><%= number_to_currency item.current_price %></p>
+          <!-- <li><%= item.inventory_level %></li> -->
+          <p><%= link_to 'Add To Cart', add_to_cart_path(item.id), :class => "button" %></p>
+
+
+        </div>
+        <% end %>
+    </div>
+<% end %>

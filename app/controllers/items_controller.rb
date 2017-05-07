@@ -10,6 +10,36 @@ class ItemsController < ApplicationController
     @supplies = Item.active.for_category('supplies').alphabetical.paginate(:page => params[:page]).per_page(10)
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.to_a
+    # get items by color
+    @red_items = Item.active.for_color('red').alphabetical
+    @black_items = Item.active.for_color('black').alphabetical
+    @green_items = Item.active.for_color('green').alphabetical
+    @white_items = Item.active.for_color('green').alphabetical
+    @beige_items = Item.active.for_color('green').alphabetical
+  end
+
+  def red_items
+    @red_items = Item.active.for_color('red').alphabetical
+    @black_items = Item.active.for_color('black').alphabetical
+    @green_items = Item.active.for_color('green').alphabetical
+    @white_items = Item.active.for_color('green').alphabetical
+    @beige_items = Item.active.for_color('green').alphabetical
+  end
+
+  def black_items
+    @red_items = Item.active.for_color('red').alphabetical
+    @black_items = Item.active.for_color('black').alphabetical
+    @green_items = Item.active.for_color('green').alphabetical
+    @white_items = Item.active.for_color('green').alphabetical
+    @beige_items = Item.active.for_color('green').alphabetical
+  end
+
+  def green_items
+    @red_items = Item.active.for_color('red').alphabetical
+    @black_items = Item.active.for_color('black').alphabetical
+    @green_items = Item.active.for_color('green').alphabetical
+    @white_items = Item.active.for_color('green').alphabetical
+    @beige_items = Item.active.for_color('green').alphabetical
   end
 
   def show
