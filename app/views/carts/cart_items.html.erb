@@ -3,11 +3,13 @@
   <h5>YOU CURRENTLY HAVE NO ITEM IN YOUR CART</h5></br>
   <p><%= link_to 'Check Our Products', items_path, :class => "button" %></p>
 <% else %>
-  <% if (current_cart).size == 1 %>
-    <h5>YOUR SHOPPING CART CONTAINS:<%= (current_cart).size.to_s %> PRODUCT</h5>
-  <% else %>
-    <h5>YOUR SHOPPING CART CONTAINS:<%= (current_cart).size.to_s %> PRODUCTS</h5>
-  <% end %>
+  <div id="product">
+    <% if (current_cart).size == 1 %>
+      <h5>YOUR SHOPPING CART CONTAINS: <span><%= (current_cart).size.to_s %> PRODUCT</span></h5>
+    <% else %>
+      <h5>YOUR SHOPPING CART CONTAINS: <span><%= (current_cart).size.to_s %> PRODUCTS</span></h5>
+    <% end %>
+ </div>
   </br>
   <table class="cart-table" width="400" style="width:90%">
     <!-- <thead> -->

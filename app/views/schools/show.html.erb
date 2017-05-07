@@ -1,0 +1,34 @@
+
+<h3><%= @school.name %></h3>
+
+<p>
+  <b>Primary Street</b>: <%= @school.street_1 %>
+</p>
+
+<p>
+  <b>Secondary Street</b>: <%= @school.street_2.nil? ? 'N/A' : @school.street_2 %>
+</p>
+
+<p>
+  <b>City</b>: <%= @school.city.nil? ? 'N/A' : @school.city %>
+</p>
+
+<p>
+  <b>State</b>: <%= @school.state.nil? ? 'N/A' : @school.state %>
+</p>
+
+<p>
+  <b>Zip Code</b>: <%= @school.zip %>
+</p>
+
+<p>
+  <b>Min Grade</b>: <%= @school.min_grade.nil? ? 'N/A' : @school.min_grade %> grade.
+</p>
+
+<p>
+  <b>Max Grade</b>: <%= @school.max_grade.nil? ? 'N/A' : @school.max_grade %> grade.
+</p>
+
+<p>
+  <b>Active</b>: <%= @school.active ? 'Yes' : 'No' %>
+</p>

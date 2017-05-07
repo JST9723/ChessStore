@@ -1,0 +1,10 @@
+<% unless @inactive_schools.empty? %>
+  <div class="panel clearfix">
+    <h3>Inactive Schools</h3>
+    <ul>
+      <% @inactive_schools.each do |school| %>
+        <li><%= link_to school.name, school_path(item) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

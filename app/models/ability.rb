@@ -5,6 +5,7 @@ class Ability
     user ||= User.new
     if user.role? :admin
        can :manage, :all
+       can :read, :all
     elsif user.role? :manager
       can :read, :all
       can [:create, :edit, :update], :User

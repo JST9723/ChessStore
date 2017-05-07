@@ -1,24 +1,4 @@
-<% if @schools.empty? %>
-  <h4>No schools at this time.</h4>
-<% else %>
-  <h4>List of Schools</h4><br>
-  <table class="table table-striped" style="width:80%">
-    <!-- <thead> -->
-      <tr>
-        <th width="120">Name</th>
-        <th width="120">Street</th>
-        <th width="50">Zip</th>
-      </tr>
-    <!-- </thead>
-    <tbody> -->
-      <% @schools.each do |school| %>
-        <tr>
-          <td><%= link_to school.name, school_path(school) %></td>
-          <td><%= school.street_1 %></td>
-          <td><%= school.zip %></td>
-        </tr>
-      <% end %>
-    <!-- </tbody> -->
-  </table>
-<% end %>
-<p>&nbsp;</p>
+<%= render partial: "partials/index_structure", locals: {model_name: "school",
+                                                         primary: "active_schools",
+                                                         secondary: nil,
+                                                         sidebar: "inactive_schools"} %>
