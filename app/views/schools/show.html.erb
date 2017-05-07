@@ -32,3 +32,5 @@
 <p>
   <b>Active</b>: <%= @school.active ? 'Yes' : 'No' %>
 </p>
+
+<%= render partial: "partials/object_options", locals: {model_name: "school", object: @school}  %>
