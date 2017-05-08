@@ -1,17 +1,43 @@
-<h5>Unshipped Orders</h5>
-<% unless @unshipped_orders.nil? || @unshipped_orders.empty? %>
-  <table class="table table-striped">
-      <tr>
-        <th width="250">School Shipped To</th>
-        <th width="250">Placed By</th>
-      </tr>
-      <% @unshipped_orders.each do |order| %>
-        <tr>
-          <td><%= link_to order.school.name, school_path(order.school) %></td>
-          <td><%= link_to order.user.proper_name, user_path(order.user) %></td>
-        </tr>
-      <% end %>
-  </table>
+<div id="unshipped_orders">
+</br>
+<% if @unshipped_orders.nil? || @unshipped_orders.empty? %>
+  <h5>YOU CURRENTLY HAVE NO ORDER THAT NEEDS TO BE SHIPPED!</h5></br>
 <% else %>
-  <p>There are no orders that need to be shipped at this time.</p>
+  <div id="product">
+    <% if @unshipped_orders.size == 1 %>
+      <h5>YOU HAVE <span><%= " "+@unshipped_orders.size.to_s %> ORDER THAT NEEDS TO BE SHIPPED</span></h5>
+    <% else %>
+      <h5>YOU HAVE <span><%= " "+@unshipped_orders.size.to_s %> ORDERS THAT NEED TO BE SHIPPED</span></h5>
+    <% end %>
+ </div><br>
+
+ <h5>Unshipped Orders</h5><br></br>
+  <% @unshipped_orders.each do |order| %>
+    <p>Order Placed On:<%= order.date.strftime('%m/%d/%y') %></p>
+    <p>Shipped To:<%= order.school.name %></p>
+    <p><%= order.school.street_1 %></p>
+    <p><% unless order.school.street_2.blank? %>
+        <%= order.school.street_2 %></p>
+      <% end %>
+    <p><%= order.school.city %>, <%= order.school.state %> <%= order.school.zip %><p>
+      <table class="table table-striped" style="width:85%">
+        <tr>
+          <th width="250">Order Item</th>
+          <th width="50">Quantity</th>
+          <th width="50">Marked as Shipped</th>
+        </tr>
+        <% order.order_items.each do |order_item| %>
+        <% if order_item.shipped_on.nil? %>
+        <tr>
+          <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= link_to(ship_order_path(order_item.id), id: 'ship_order',data: {confirm: "Are you sure you want to mark it as shipped?"}, emote: true) do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span><% end %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </table><br></br>
+  <% end %>
 <% end %>
+</div>

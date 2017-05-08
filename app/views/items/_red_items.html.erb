@@ -6,9 +6,9 @@
           <img src="//placehold.it/600x600" class="thumbnail" alt="">
           <p><%= link_to item.name, item_path(item) %></p>
           <p><%= number_to_currency item.current_price %></p>
-          <!-- <li><%= item.inventory_level %></li> -->
-          <p><%= link_to 'Add To Cart', red_add_to_cart_path(item.id), :class => "button" %></p>
-
+          <%if can? :create, Order %>
+            <p><%= link_to 'Add To Cart', red_add_to_cart_path(item.id), :class => "button" %></p>
+          <% end %>
 
         </div>
         <% end %>

@@ -17,6 +17,10 @@ class UsersController < ApplicationController
   def show
   end
 
+  def order_history
+    @orders = current_user.orders
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

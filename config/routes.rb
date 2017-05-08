@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   get 'remove_from_cart/:id' => 'carts#remove_from_cart', :as => :remove_from_cart
   get 'subtract_from_cart/:id' => 'carts#subtract_from_cart', :as => :subtract_from_cart
   get 'update_add_to_cart/:id' => 'carts#update_add_to_cart', :as => :update_add_to_cart
+  get 'ship_order/:id' => 'home#ship_order', :as => :ship_order
   get 'cart_items' => 'carts#cart_items', :as => :cart_items
+  get 'order_history' => 'users#order_history', :as => :order_history
   get 'red_items' => 'items#red_items', :as => :red_items
   get 'black_items' => 'items#black_items', :as => :black_items
   get 'green_items' => 'items#green_items', :as => :green_items

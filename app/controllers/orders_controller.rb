@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
     if @order.save
       save_each_item_in_cart(@order)
       @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
+      @order.pay
       @order.save!
       redirect_to order_path(@order), notice: "Successfully placing the order!"
 
@@ -54,7 +55,11 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    redirect_to orders_path, notice: "Successfully removed this order from the system."
+    if can? :edit, Order
+      redirect_to orders_path, notice: "Successfully removed this order from the system."
+    else
+      redirect_to order_history_path, notice: "Successfully removed this order from the system."
+    end
   end
 
 
@@ -64,7 +69,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-      params.require(:order).permit(:school_id, :user_id, :date, :grand_total, :payment_receipt)
+      params.require(:order).permit(:school_id, :user_id, :date, :grand_total,:expiration_year,:credit_card_number,:expiration_month, :payment_receipt)
   end
 
 

@@ -86,8 +86,8 @@ class Order < ActiveRecord::Base
   end
 
   def credit_card_number_is_valid
-    return false if self.expiration_year.nil? || self.expiration_month.nil?
-    if self.credit_card_number.nil? || credit_card.type.nil?
+    return false if self.expiration_year.to_i.nil? || self.expiration_month.to_i.nil?
+    if self.credit_card_number.to_i.nil? || credit_card.type.nil?
       errors.add(:credit_card_number, "is not valid")
       return false
     end
@@ -95,8 +95,8 @@ class Order < ActiveRecord::Base
   end
 
   def expiration_date_is_valid
-    return false if self.credit_card_number.nil?
-    if self.expiration_year.nil? || self.expiration_month.nil? || credit_card.expired?
+    return false if self.credit_card_number.to_i.nil?
+    if self.expiration_year.to_i.nil? || self.expiration_month.to_i.nil? || credit_card.expired?
       errors.add(:expiration_year, "is expired")
       return false
     end

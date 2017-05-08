@@ -19,7 +19,7 @@
 <p>
   <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
 </p>
-
+<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager) ||  (current_user.role? :shipper)) %>
 <p>
   <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
 </p>
@@ -27,6 +27,7 @@
 <p>
   <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
 </p>
+<% end %>
 
 <p>
   <b>Category</b>: <%= @item.category.capitalize %>
@@ -39,10 +40,12 @@
 <p>
   <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
 </p>
-
+<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager) ||  (current_user.role? :shipper)) %>
 <p>
   <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
-</p>
+</p><% end %>
 
-<%= link_to("Add a New Purchase", new_purchase_path(item_id:@item.id), id: 'new_purchase_link', class: 'button tiny radius', remote:true) %>
+<% if can? :create, Purchase %>
+  <%= link_to("Add a New Purchase", new_purchase_path(item_id:@item.id), id: 'new_purchase_link', class: 'button tiny radius', remote:true) %>
+<% end %>
 </div>

@@ -3,13 +3,16 @@
     <legend>Place The Order</legend>
     <%= f.input :school_id, collection: School.active.to_a, include_blank: true, input_html: {class: "avg"} %>
     <legend>Credit Card Information</legend>
-    <%= f.input :credit_card_number, input_html: {class: "avg"} %>
+    <%= f.input :credit_card_number, :input_html => { :type => "number" } %>
+
     <div class="row">
       <div class="medium-6 columns">
-        <%= f.input :expiration_year, input_html: {class: "avg"} %>
+        <%= f.input :expiration_year, :input_html => { :type => "number" } %>
+
       </div>
       <div class="medium-6 columns">
-        <%= f.input :expiration_month, input_html: {class: "avg"} %>
+        <%= f.input :expiration_month, :input_html => { :type => "number" } %>
+
       </div>
     </div>
     <br></br>

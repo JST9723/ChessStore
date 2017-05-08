@@ -9,8 +9,10 @@ class Ability
        can :read, :all
     elsif user.role? :manager
       can :read, :all
-      can [:create, :edit, :update], :User
-      can [:create, :edit, :update, :destroy], :Item
+      can [:create, :edit, :update], User
+      can [:create, :edit, :update, :destroy], Item
+      can [:create, :edit, :update, :destroy], Order
+      can [:create, :edit, :update, :destroy], OrderItem
       can :create, [:ItemPrice, :Purchase, :School]
     elsif user.role? :shipper
       can :read, Order
@@ -19,6 +21,11 @@ class Ability
       #   user.id == current_user.id
       # end
     elsif user.role? :customer
+      can :create, Order
+      can [:read, :destroy], Order do |o|
+        o.user_id == user.id
+      end
+      can [:create, :destroy, :read], OrderItem
       can :create, School
       can :read, Item
       can :update, User do |current_user|

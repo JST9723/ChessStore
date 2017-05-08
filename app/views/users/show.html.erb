@@ -6,7 +6,9 @@
 </p>
 
 <p>
-  <b>Phone</b>: <%= @user.phone.nil? ? 'N/A' : @user.phone %>
+  <b>Phone</b>:
+  <% if @user.phone.nil? || @user.phone.blank? %>NA<% else %>
+  <%= @user.phone %><% end %>
 </p>
 
 <p>
@@ -22,4 +24,6 @@
   <b>Active</b>: <%= @user.active ? 'Yes' : 'No' %>
 </p>
 
-<%= render partial: "partials/object_options", locals: {model_name: "user", object: @user}  %>
+<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+  <%= render partial: "partials/object_options", locals: {model_name: "user", object: @user}  %>
+<% end %>
