@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :check_login
+  authorize_resource
+
   def index
     @purchases = Purchase.chronological.to_a
   end
@@ -11,12 +13,17 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.date = Date.current
-
+    respond_to do |format|
     if @purchase.save
-      redirect_to purchases_path, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
+      format.html { redirect_to @purchase, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}." }
+      @item = @purchase.item
+      format.js
     else
-      render action: 'new'
+      format.html { render action: 'new' }
+      format.json { render json: @purchase.errors, status: :unprocessable_entity }
+      format.js
     end
+  end
   end
 
   private

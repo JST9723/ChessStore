@@ -30,8 +30,7 @@
       <%= f.text_field :city %>
     </p>
     <p>
-      <%= f.label :state %><br />
-      <%= f.text_field :state %>
+      <%= f.input :state, collection: School::STATES_LIST , include_blank: true, input_html: {class: "avg"} %>
     </p>
     <p>
       <%= f.label :min_grade %><br />

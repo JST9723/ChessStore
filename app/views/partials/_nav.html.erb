@@ -21,7 +21,7 @@
         </li>
         <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
           <li><%= link_to "PURCHASES", purchases_path %></li>
-          <li><%= link_to "PRICES", item_prices_path %></li>
+          <!-- <li><%= link_to "PRICES", item_prices_path %></li> -->
           <li><%= link_to "USERS", users_path %></li>
         <% end %>
         <% if can? :read, School %>

@@ -1,6 +1,7 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show,:edit, :update,:destroy]
   before_action :check_login
+  authorize_resource
 
   def index
     @schools = School.active.alphabetical
@@ -21,6 +22,7 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
+    authorize! :create, @school
     if @school.save
       redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
     else

@@ -1,0 +1,17 @@
+<h5>Unshipped Orders</h5>
+<% unless @unshipped_orders.nil? || @unshipped_orders.empty? %>
+  <table class="table table-striped">
+      <tr>
+        <th width="250">School Shipped To</th>
+        <th width="250">Placed By</th>
+      </tr>
+      <% @unshipped_orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.school.name, school_path(order.school) %></td>
+          <td><%= link_to order.user.proper_name, user_path(order.user) %></td>
+        </tr>
+      <% end %>
+  </table>
+<% else %>
+  <p>There are no orders that need to be shipped at this time.</p>
+<% end %>

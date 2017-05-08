@@ -1,5 +1,7 @@
 <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
   <%= render :partial => 'reorder_list' %>
+<% elsif (not current_user.nil?) && (current_user.role? :shipper) %>
+  <%= render :partial => 'unshipped' %>
 <% else %>
   <%= render :partial => 'general_home' %>
 <% end %>

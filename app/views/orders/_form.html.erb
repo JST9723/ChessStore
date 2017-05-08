@@ -2,10 +2,17 @@
   <fieldset>
     <legend>Place The Order</legend>
     <%= f.input :school_id, collection: School.active.to_a, include_blank: true, input_html: {class: "avg"} %>
+    <legend>Credit Card Information</legend>
     <%= f.input :credit_card_number, input_html: {class: "avg"} %>
-    <%= f.input :expiration_year, input_html: {class: "avg"} %>
-    <%= f.input :expiration_month, input_html: {class: "avg"} %>
-
+    <div class="row">
+      <div class="medium-6 columns">
+        <%= f.input :expiration_year, input_html: {class: "avg"} %>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.input :expiration_month, input_html: {class: "avg"} %>
+      </div>
+    </div>
+    <br></br>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

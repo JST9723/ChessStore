@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   include ChessStoreHelpers::Cart
+  include ChessStoreHelpers::Shipping
 
   before_action :check_login
   before_action :set_order, only: [:show,:edit, :update,:destroy]
+  authorize_resource
 
   def index
     @orders = Order.chronological
@@ -13,6 +15,9 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order_items = get_list_of_items_in_cart
+    @shipping_costs = calculate_cart_shipping
+    @grand_total= calculate_cart_items_cost + @shipping_costs
     @order = Order.new
   end
 
@@ -20,13 +25,17 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order_items = get_list_of_items_in_cart
     @order = Order.new(order_params)
     @order.date = Date.current
     @order.user_id = current_user.id
     save_each_item_in_cart(@order)
-    @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
     if @order.save
+      save_each_item_in_cart(@order)
+      @order.grand_total = calculate_cart_items_cost + @order.shipping_costs
+      @order.save!
       redirect_to order_path(@order), notice: "Successfully placing the order!"
+
     else
       flash[:error] = "This order could not be created."
       render action: 'new'

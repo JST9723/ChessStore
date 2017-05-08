@@ -251,6 +251,23 @@ h5 {
   color:white;
 }
 
+.checkout-button {
+  float:right;
+  margin-right: 70px;
+}
+
+.checkout-button a{
+  color: white;
+  background-color: #FF9900;
+  font-size: 19px;
+}
+
+.checkout-button a:hover{
+  color:white;
+  border-color: #d98026;
+  background-color: #d98026;
+}
+
 #inactive_schools li{
   list-style-type: none;
 }
@@ -258,4 +275,15 @@ h5 {
 #inactive_schools {
   padding: 25px;
   box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .08);
+}
+
+.summary-table {
+  border-collapse: collapse;
+  border-color: 0px white;
+}
+
+
+#sum {
+  float:right;
+  padding-right: 20px;
 }

@@ -1,0 +1,19 @@
+<h5>Order Summary</h5>
+<div id="summary-table">
+  <table class="table" style="width:100%">
+    <tr>
+      <th width="150">Name</th>
+      <th width="45">Item Price</th>
+    </tr>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+      <td><%= number_to_currency(order_item.item.current_price * order_item.quantity) %></td>
+    <tr>
+    <% end %>
+  </table>
+</div>
+  <div id="sum">
+    <p>Shipping Cost: <%= number_to_currency(@shipping_costs) %></p>
+    <p>Grand Total:<%= number_to_currency(@grand_total) %> </p>
+  </div>

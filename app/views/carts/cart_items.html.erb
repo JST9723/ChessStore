@@ -52,9 +52,8 @@
   <div class="checkout-right-basket">
 		<%= link_to items_path, :class => "button" do %>
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping<% end %>
-	</div>
+	</div><br></br><br></br>
   <div class="checkout-button">
-		<%= link_to new_order_path, :class => "button" do %>
-      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Check Out<% end %>
+		<p><%= link_to "Check Out", new_order_path, :class => "button" %></p>
 	</div>
 <% end %>

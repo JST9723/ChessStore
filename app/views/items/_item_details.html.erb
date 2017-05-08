@@ -1,3 +1,4 @@
+<div id="item_details">
 <div class="row">
   <div class="small-7 columns">
     <h3><%= @item.name %></h3>
@@ -42,3 +43,6 @@
 <p>
   <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
 </p>
+
+<%= link_to("Add a New Purchase", new_purchase_path(item_id:@item.id), id: 'new_purchase_link', class: 'button tiny radius', remote:true) %>
+</div>
