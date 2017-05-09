@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.active.alphabetical
-    @inactive_users = User.inactive.alphabetical
+    @users = User.active.alphabetical.paginate(:page => params[:page]).per_page(7)
+    @inactive_users = User.inactive.alphabetical.paginate(:page => params[:page]).per_page(7)
   end
 
   def new

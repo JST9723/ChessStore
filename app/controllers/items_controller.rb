@@ -14,32 +14,42 @@ class ItemsController < ApplicationController
     @red_items = Item.active.for_color('red').alphabetical
     @black_items = Item.active.for_color('black').alphabetical
     @green_items = Item.active.for_color('green').alphabetical
-    @white_items = Item.active.for_color('green').alphabetical
-    @beige_items = Item.active.for_color('green').alphabetical
+    @brown_items = Item.active.for_color('brown').alphabetical
+    @beige_items = Item.active.for_color('beige').alphabetical
   end
 
   def red_items
     @red_items = Item.active.for_color('red').alphabetical
     @black_items = Item.active.for_color('black').alphabetical
     @green_items = Item.active.for_color('green').alphabetical
-    @white_items = Item.active.for_color('green').alphabetical
-    @beige_items = Item.active.for_color('green').alphabetical
+    @brown_items = Item.active.for_color('brown').alphabetical
+    @beige_items = Item.active.for_color('beige').alphabetical
+
   end
 
   def black_items
     @red_items = Item.active.for_color('red').alphabetical
     @black_items = Item.active.for_color('black').alphabetical
     @green_items = Item.active.for_color('green').alphabetical
-    @white_items = Item.active.for_color('green').alphabetical
-    @beige_items = Item.active.for_color('green').alphabetical
+    @brown_items = Item.active.for_color('brown').alphabetical
+    @beige_items = Item.active.for_color('beige').alphabetical
+
   end
 
   def green_items
     @red_items = Item.active.for_color('red').alphabetical
     @black_items = Item.active.for_color('black').alphabetical
     @green_items = Item.active.for_color('green').alphabetical
-    @white_items = Item.active.for_color('green').alphabetical
-    @beige_items = Item.active.for_color('green').alphabetical
+    @brown_items = Item.active.for_color('brown').alphabetical
+    @beige_items = Item.active.for_color('beige').alphabetical
+  end
+
+  def brown_items
+    @red_items = Item.active.for_color('red').alphabetical
+    @black_items = Item.active.for_color('black').alphabetical
+    @green_items = Item.active.for_color('green').alphabetical
+    @brown_items = Item.active.for_color('brown').alphabetical
+    @beige_items = Item.active.for_color('beige').alphabetical
   end
 
   def show

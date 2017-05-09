@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= simple_form_for @user, html: { class: 'form-horizontal', multipart: true }  do |f| %>
 	<% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,38 +10,26 @@
       </ul>
     </div>
   <% end %>
-	<p>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :email, "Email Address" %><br />
-    <%= f.text_field :email %>
-  </p>
-	<p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-	<p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-	<p>
-    <%= f.label :role %><br />
-    <%= f.select :role, User::ROLES, :prompt => "Select ..." %>
-  </p>
+	<fieldset class="fieldset">
+		<%= f.input :first_name %>
+		<%= f.input :last_name %>
+		<%= f.input :email, :input_html => { :placeholder => "info@gmail.com"} %>
+		<%= f.input :phone, :input_html => { :placeholder => "412-123-4567"} %>
+		<%= f.input :username %>
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
 
-  <p><%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => "hollow button" %></p>
+		<%= f.input :active, :input_html => { :type => "radio"} %>
+    <%= f.input :role, :collection => User::ROLES, :prompt => "Select..." %>
+		<br></br>
+
+		<div class="form-actions">
+      <%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => "hollow button" %>
+			<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+				<%= link_to 'Cancel',users_path, :class => 'button alert radius' %>
+			<% else %>
+			  <%= link_to 'Cancel',home_path, :class => 'button alert radius' %>
+			<% end %>
+		</div>
+  </fieldset>
 <% end %>

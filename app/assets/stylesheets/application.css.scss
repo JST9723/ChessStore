@@ -14,6 +14,9 @@
 //= require foundation_and_overrides
 
  */
+#login {
+  width:30%;
+}
 
  .tl_name {
   width: 225px;
@@ -64,22 +67,29 @@
 }
 
 #footer {
+  font-size: 15px;
+  font-family: 'Glegoo', serif;
   margin-top: 15px;
-  padding-top: 0px;
+  padding-top: 10px;
+  height: 170px;
   padding-bottom: 15px;
-  background-color:#fff;
-  color: #6493ba;
+  background-color:white;
+  color: black;
   text-align: center;
 }
 
 #footer a {
-  color: #7f9eb8;
+  font-size: 15px;
+  font-weight: 550;
+  font-family: 'Glegoo', serif;
+  letter-spacing: 1px;
+  color: black;
   text-decoration: none;
 }
 
 #footer a:hover {
-  color: #7f9eb8;
-  text-decoration: underline;
+  color: grey;
+  text-decoration: none;
 }
 
 #copy {
@@ -192,12 +202,13 @@ h5 {
   background-color: #fff;
 }
 
-#color-block {
+#color-panel {
+  margin-left: 20px;
   padding: 20px;
   border: 1px solid #E5E5E5;
   letter-spacing: 1px;
-  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .08);
-  background-color: #FFFFFA;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+  background-color: white;
 }
 
 #color-block a:hover{
@@ -208,11 +219,14 @@ h5 {
   padding:8px;
 }
 
-#color-panel h3{
+#color-block h3{
+  line-height: 1.1;
+  padding-left: 20px;
   font-family: 'Glegoo', serif;
 }
 
-#color-list {
+#color-panel {
+  padding-left: 20px;
   font-size: 18px;
   font-family: 'Glegoo', serif;
 }

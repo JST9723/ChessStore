@@ -4,6 +4,7 @@
 @import 'foundation';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Glegoo');
+
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //
 // @import 'motion-ui/motion-ui';
@@ -54,4 +55,75 @@
 // @include motion-ui-animations;
 #cart-table {
   background-color: #fff;
+}
+
+/* Cutting back the spacing on simple_form... */
+.form-horizontal .control-label {
+    float: left;
+    padding-top: 3px;
+    text-align: right;
+    width: 80px;
+    font-size: 90%;
+}
+.form-horizontal .controls {
+    margin-left: 90px;
+    /*width: 350px;*/
+}
+
+.form-horizontal .control-label .avg {
+    float: left;
+    padding-top: 3px;
+    text-align: left;
+    width: 10px;
+    font-size: 90%;
+}
+
+.form-horizontal .min_task .control-label {
+    float: left;
+    padding-top: 3px;
+    text-align: right;
+    width: 60px;
+    font-size: 90%;
+}
+.form-horizontal .min_task .controls {
+    margin-left: 70px;
+    width: 200px;
+}
+
+select.date { width: 90px; }
+select.time { width: 90px; }
+
+.form-actions {
+  background-color: #FFF;
+}
+
+.form-actions-min {
+  background-color: #FFF;
+  border: none;
+  padding: 10px 10px 10px 180px;
+  /*padding-left: 180px;*/
+}
+
+div.boolean, .simple_form input[type='radio'] {
+  margin-left: 20px;
+}
+
+div.boolean label {
+  float: none;
+  margin: 0;
+}
+
+input {
+  &.radio {
+    margin-right: 5px;
+    vertical-align: -3px;
+  }
+  &.check_boxes {
+    margin-left: 3px;
+    vertical-align: -3px;
+  }
+}
+
+.pagination ul > li > a, .pagination ul > li > span {
+  border-left-width: 1px;
 }

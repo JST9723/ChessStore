@@ -27,9 +27,15 @@ class Ability
       end
       can [:create, :destroy, :read], OrderItem
       can :create, School
+      can :create, User
       can :read, Item
-      can :update, User do |current_user|
-        user.id == current_user.id
+      # they can read their own profile
+      can :show, User do |u|
+        u.id == user.id
+      end
+      # they can update their own profile
+      can :update, User do |u|
+        u.id == user.id
       end
      else
        can :create, School
