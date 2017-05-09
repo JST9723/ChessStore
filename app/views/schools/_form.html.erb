@@ -43,9 +43,11 @@
     <p>
       <%= f.label :zip %><br />
       <%= f.text_field :zip %>
-    </p>
-    <%= f.input :active %>
+    <% if logged_in? && (current_user.role == "admin" || current_user.role == "manager") %>
+      </p><%= f.input :active %></p>
+    <% end %>
 
+    <br> </br>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

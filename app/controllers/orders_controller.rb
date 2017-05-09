@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       @order.pay
       @order.save!
       redirect_to order_path(@order), notice: "Successfully placing the order!"
-
+      clear_cart
     else
       flash[:error] = "This order could not be created."
       render action: 'new'
@@ -58,7 +58,11 @@ class OrdersController < ApplicationController
     if can? :edit, Order
       redirect_to orders_path, notice: "Successfully removed this order from the system."
     else
-      redirect_to order_history_path, notice: "Successfully removed this order from the system."
+      if @order.order_items.shipped.empty?
+        redirect_to order_history_path, notice: "Successfully removed this order from your order history."
+      else
+        redirect_to order_history_path,notice: "This order can not be canceled because it has been shipped. The unshipped orders has been removed."
+      end
     end
   end
 

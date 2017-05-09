@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: [:show,:edit, :update,:destroy]
-  before_action :check_login
+  before_action :check_login, only: [:show,:edit,:update, :destroy]
   authorize_resource
 
   def index
@@ -22,9 +22,13 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
-    authorize! :create, @school
+    # authorize! :create, @school
     if @school.save
-      redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
+      if can? :read, School
+        redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
+      else
+        redirect_to home_path, notice: "Successfully created #{@school.name}."
+      end
     else
       flash[:error] = "This school could not be created."
       render action: 'new'

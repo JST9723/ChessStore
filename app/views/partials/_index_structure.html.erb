@@ -7,7 +7,7 @@
       <p>&nbsp;</p>
       <%= render partial: "#{secondary}" %>
     <% end %>
-    
+
   </div>
   <div class="small-4 columns">
     <!-- render the sidebar, if it exists -->
@@ -15,8 +15,10 @@
   </div>
 </div>
 
+<% if can? :create, model_name %>
 <!-- Add a button for new instances of object -->
 <%= link_to(eval("new_#{model_name}_path"), class: "button radius") do %>
   <!-- <i class="fa fa-plus"></i> -->
   &nbsp;Add a New <%= model_name.capitalize %>
+<% end %>
 <% end %>

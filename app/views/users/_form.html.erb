@@ -18,9 +18,10 @@
 		<%= f.input :username %>
 		<%= f.input :password %>
 		<%= f.input :password_confirmation %>
-
-		<%= f.input :active, :input_html => { :type => "radio"} %>
-    <%= f.input :role, :collection => User::ROLES, :prompt => "Select..." %>
+		<% if logged_in? && (current_user.role == "admin" || current_user.role == "manager") %>
+			<%= f.input :active, :input_html => { :type => "radio"} %>
+    	<%= f.input :role, :collection => User::ROLES, :prompt => "Select..." %>
+		<% end %>
 		<br></br>
 
 		<div class="form-actions">
