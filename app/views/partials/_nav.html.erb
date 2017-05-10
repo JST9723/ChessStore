@@ -36,7 +36,9 @@
                <li><%= link_to "All Users", users_path %></li>
                <li><%= link_to "Employees", employees_path %></li>
                <li><%= link_to "Customers", customers_path %></li>
-               <li><%= link_to "Add A New User", new_user_path %></li>
+               <% if current_user.role? :admin %>
+                <li><%= link_to "Add A New User", new_user_path %></li>
+              <% end %>
              </div>
            </ul>
          </li>

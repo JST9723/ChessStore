@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def order_history
+    @unshipped_orders = current_user.orders & Order.not_shipped
     @orders = current_user.orders
   end
 

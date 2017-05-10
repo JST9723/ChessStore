@@ -2,15 +2,40 @@
 <% if @orders.empty? %>
   <h5>YOU HAVE NO ORDERS AT THIS TIME</h5>
 <% else %>
+<% unless @unshipped_orders.empty? %>
+<h4>Unshipped Orders</h4><br>
+<table class="table table-striped" style='width:85%'>
+    <tr>
+      <th width="225">Shipped To School</th>
+      <th width="150">Date</th>
+      <th width="150">Grand Total</th>
+      <th width="50">View Details</th>
+      <th width="50">Cancel Order</th>
+    </tr>
+    <% @unshipped_orders.each do |order| %>
+      <tr>
+        <td><%= order.school.name %></td>
+        <td><%= order.date.strftime('%m/%d/%y') %></td>
+        <% unless order.grand_total.nil? || order.grand_total.blank? %>
+          <td><%= order.grand_total.round(2) %></td>
+        <% end %>
+        <td><%= link_to order_path(order) do %>
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><% end %>
+        </td>
+        <td><%= link_to order_path(order), method: :delete, data: {confirm: "Are you sure you want to permanently cancel this order"} do %>
+          <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><% end %>
+        </td>
+      </tr>
+    <% end %>
+</table><br><% end %>
   <h4>Recent orders</h4><br>
-  <table class="table table-striped">
+  <table class="table table-striped" style='width:85%'>
     <!-- <thead> -->
       <tr>
         <th width="225">Shipped To School</th>
         <th width="150">Date</th>
         <th width="150">Grand Total</th>
         <th width="50">View Details</th>
-        <th width="50">Cancel Order</th>
       </tr>
     <!-- </thead>
     <tbody> -->
@@ -24,9 +49,7 @@
           <td><%= link_to order_path(order) do %>
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><% end %>
           </td>
-          <td><%= link_to order_path(order), method: :delete, data: {confirm: "Are you sure you want to permanently cancel this order"} do %>
-            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><% end %>
-          </td>
+
         </tr>
       <% end %>
     <!-- </tbody> -->
