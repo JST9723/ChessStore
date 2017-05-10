@@ -11,7 +11,7 @@
   </div>
   <div class="small-4 columns">
     <!-- render the sidebar, if it exists -->
-    <%= render partial: "#{sidebar}" unless sidebar.blank? %>
+    <%= render partial: "#{sidebar}" unless (sidebar.blank? || sidebar.nil?) %>
   </div>
 </div>
 

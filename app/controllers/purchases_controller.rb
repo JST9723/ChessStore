@@ -3,13 +3,13 @@ class PurchasesController < ApplicationController
   authorize_resource
 
   def index
-    @purchases = Purchase.chronological.paginate(:page => params[:page]).per_page(10)
+    @purchases = Purchase.chronological.to_a
   end
 
   def new
     @purchase = Purchase.new
   end
-
+  
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.date = Date.current
@@ -20,14 +20,15 @@ class PurchasesController < ApplicationController
       format.js
     else
       format.html { render action: 'new' }
+      format.json { render json: @purchase.errors, status: :unprocessable_entity }
       format.js
     end
   end
+
   end
 
   private
   def purchase_params
     params.require(:purchase).permit(:item_id, :quantity)
   end
-
 end

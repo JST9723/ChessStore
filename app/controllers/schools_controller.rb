@@ -25,9 +25,9 @@ class SchoolsController < ApplicationController
     # authorize! :create, @school
     if @school.save
       if can? :read, School
-        redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
+        redirect_to school_path(@school), notice: "Successfully created school #{@school.name}."
       else
-        redirect_to home_path, notice: "Successfully created #{@school.name}."
+        redirect_to home_path, notice: "Successfully created school #{@school.name}."
       end
     else
       flash[:error] = "This school could not be created."
@@ -37,7 +37,7 @@ class SchoolsController < ApplicationController
 
   def update
     if @school.update_attributes(school_params)
-      redirect_to school_path(@school), notice: "Successfully updated #{@school.name}."
+      redirect_to school_path(@school), notice: "Successfully updated school #{@school.name}."
     else
       render action: 'edit'
     end
@@ -45,7 +45,7 @@ class SchoolsController < ApplicationController
 
   def destroy
     @school.destroy
-    redirect_to schools_path, notice: "Successfully removed #{@school.name} from the system."
+    redirect_to schools_path, notice: "Successfully removed school #{@school.name} from the system."
   end
 
   private

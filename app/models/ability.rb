@@ -11,6 +11,7 @@ class Ability
       can :read, :all
       can [:create, :edit, :update], User
       can [:create, :edit, :update, :destroy], Item
+      can :create, Purchase
       can [:create, :edit, :update, :destroy], Order
       can [:create, :edit, :update, :destroy], OrderItem
       can :create, [:ItemPrice, :Purchase, :School]

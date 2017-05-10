@@ -11,9 +11,11 @@
       <% end %>
     <% end %>
     &nbsp;&nbsp;
-    <% if can? :update, model_name %>
-      <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button radius alert') do %>
-          &nbsp;<%= "Delete #{opt}" %>
+    <% unless model_name == "user" %>
+      <% if can? :update, model_name %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button radius alert') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

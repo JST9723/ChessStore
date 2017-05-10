@@ -31,8 +31,11 @@ Rails.application.routes.draw do
   get 'ship_order/:id' => 'home#ship_order', :as => :ship_order
   get 'cart_items' => 'carts#cart_items', :as => :cart_items
   get 'order_history' => 'users#order_history', :as => :order_history
+  get 'employees' => 'users#employees', :as => :employees
+  get 'customers' => 'users#customers', :as => :customers
   get 'red_items' => 'items#red_items', :as => :red_items
   get 'black_items' => 'items#black_items', :as => :black_items
   get 'green_items' => 'items#green_items', :as => :green_items
   get 'brown_items' => 'items#brown_items', :as => :brown_items
+  get 'cylon' => 'errors#cylon', as: :cylon
 end
