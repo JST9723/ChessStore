@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   authorize_resource
 
   def index
-    @purchases = Purchase.chronological.to_a
+    @purchases = Purchase.chronological.paginate(:page => params[:page]).per_page(10)
   end
 
   def new
