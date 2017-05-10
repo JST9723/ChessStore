@@ -8,8 +8,10 @@
         <th width="150">Name</th>
         <th width="150">Street</th>
         <th width="50">Zip</th>
-        <th width="30">Edit</th>
-        <th width="30">Remove</th>
+        <% if (not current_user.nil?) && (current_user.role? :admin) %>
+          <th width="30">Edit</th>
+          <th width="30">Remove</th>
+        <% end %>
       </tr>
     <!-- </thead>
     <tbody> -->
@@ -18,12 +20,14 @@
           <td><%= link_to school.name, school_path(school) %></td>
           <td><%= school.street_1 %></td>
           <td><%= school.zip %></td>
+          <% if (not current_user.nil?) && (current_user.role? :admin) %>
           <td><%= link_to edit_school_path(school) do %>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span><% end %>
           </td>
           <td><%= link_to school_path(school), method: :delete, data: {confirm: "Are you sure you want to permanently delete this school"} do %>
             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span><% end %>
           </td>
+          <% end %>
         </tr>
       <% end %>
     <!-- </tbody> -->

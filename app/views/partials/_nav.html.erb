@@ -14,7 +14,16 @@
            </div>
          </ul>
          <% end %>
-         <% if can? :create, School  %>
+         <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+          <li><%= link_to "SCHOOLS", schools_path %>
+            <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+              <div class ="data-dropdown-menu">
+                <li><%= link_to "List of Schools", schools_path %></li>
+                <li><%= link_to "Add A School", new_school_path %></li>
+              </div>
+            </ul>
+          </li>
+         <% elsif can? :create, School  %>
            <li><%= link_to "ADD A SCHOOL", new_school_path %></li>
          <% end %>
        </li>
@@ -27,12 +36,10 @@
                <li><%= link_to "All Users", users_path %></li>
                <li><%= link_to "Employees", employees_path %></li>
                <li><%= link_to "Customers", customers_path %></li>
+               <li><%= link_to "Add A New User", new_user_path %></li>
              </div>
            </ul>
          </li>
-       <% end %>
-       <% if can? :read, School %>
-         <li><%= link_to "SCHOOLS", schools_path %></li>
        <% end %>
        <% if can? :edit, Order %>
          <li><%= link_to "ORDERS", orders_path %></li>
