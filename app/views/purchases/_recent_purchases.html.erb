@@ -4,15 +4,9 @@
   <h4>Recent Purchases</h4>
   <table class="table table-striped" style="width:70%">
       <tr>
-<<<<<<< HEAD
-        <th width="165">Item</th>
-        <th width="50">Quantity</th>
-        <th width="150">Date</th>
-=======
         <th width="155">Item</th>
         <th width="50">Quantity</th>
         <th width="120">Date</th>
->>>>>>> nav
       </tr>
       <% @purchases.each do |purchase| %>
         <tr>
@@ -23,10 +17,5 @@
       <% end %>
   </table>
 <% end %>
-<<<<<<< HEAD
-</br>
-
-=======
 <%= will_paginate @purchases, renderer: BootstrapPagination::Rails %>
->>>>>>> nav
 <p>&nbsp;</p>

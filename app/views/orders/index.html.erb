@@ -12,8 +12,6 @@
         <th width="50">View Details</th>
         <th width="50">Cancel Order</th>
       </tr>
-    <!-- </thead>
-    <tbody> -->
       <% @orders.each do |order| %>
         <tr>
           <td><%= link_to order.school.name, school_path(order.school) %></td>
@@ -33,11 +31,9 @@
     <!-- </tbody> -->
   </table>
 <% end %>
-<<<<<<< HEAD
 
 </br>
-<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
-=======
+
 <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
->>>>>>> nav
+
 <p>&nbsp;</p>

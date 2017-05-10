@@ -7,15 +7,8 @@
       <tr>
         <th width="150">Name</th>
         <th width="150">Username</th>
-<<<<<<< HEAD
-        <th width="170">Email</th>
-        <% if can? :edit, User %>
-          <th width="50">Action</th>
-        <% end %>
-=======
         <th width="150">Email</th>
         <th width="60">Role</th>
->>>>>>> nav
       </tr>
     <!-- </thead>
     <tbody> -->
@@ -24,16 +17,8 @@
           <td><%= link_to user.proper_name, user_path(user) %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= mail_to user.email, user.email, encode: "javascript" %></td>
-<<<<<<< HEAD
-          <% if can? :edit, User %>
-          <td>
-            <%= link_to(edit_user_path(user), class: "button tiny") do %>
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit<% end %>
-          </td>
-          <% end %>
-=======
           <td><%= user.role %></td>
->>>>>>> nav
+
         </tr>
       <% end %>
     <!-- </tbody> -->
