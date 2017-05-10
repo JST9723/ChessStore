@@ -16,3 +16,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+// Flash fade
+$(function() {
+   $('.alert-box').fadeIn('normal', function() {
+      $(this).delay(2000).fadeOut();
+   });
+});

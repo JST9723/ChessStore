@@ -2,6 +2,7 @@
   <fieldset>
     <legend>Place The Order</legend>
     <%= f.input :school_id, collection: School.active.to_a, include_blank: true, input_html: {class: "avg"} %>
+    <p>Can not find your school? <%= link_to "click here to add your school", new_school_path %></p>
     <legend>Credit Card Information</legend>
     <%= f.input :credit_card_number, :input_html => { :type => "number" } %>
 
