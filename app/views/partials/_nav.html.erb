@@ -1,64 +1,71 @@
- <div data-sticky-container>
-  <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li><%= link_to image_tag('cylon_icon.png'), home_path %></li>
-        <li><%= link_to "HOME", home_path %></li>
-        <li>
-          <%= link_to "ITEMS", items_path %>
-          <% if can? :create, School  %>
-            <li><%= link_to "ADD A SCHOOL", new_school_path %></li>
-          <% end %>
-          <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
-          <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-            <div class ="data-dropdown-menu">
-              <li><%= link_to "Item List", items_path %></li>
-              <li><%= link_to "Reorder List", home_path %></li>
-              <li><%= link_to "Add an Item", new_item_path %></li>
-            </div>
-          </ul>
-          <% end %>
-        </li>
-        <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
-          <li><%= link_to "PURCHASES", purchases_path %></li>
-          <!-- <li><%= link_to "PRICES", item_prices_path %></li> -->
-          <li><%= link_to "USERS", users_path %></li>
-        <% end %>
-        <% if can? :read, School %>
-          <li><%= link_to "SCHOOLS", schools_path %></li>
-        <% end %>
-        <% if can? :edit, Order %>
-          <li><%= link_to "ORDERS", orders_path %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="top-bar-right">
+<div data-sticky-container>
+ <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+   <div class="top-bar-left">
      <ul class="dropdown menu" data-dropdown-menu>
-       <% if logged_in? %>
-          <li>
-            <%= link_to "Welcome, #{current_user.first_name}", user_path(current_user) %>
-            <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
-              <div class ="data-dropdown-menu">
-                <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-                <% if can? :create, Order %>
-                <li><%= link_to "Order History", order_history_path %></li><% end %>
-                <li><%= link_to "Logout", logout_path %></li>
-              </div>
-            </ul>
-          </li>
-            <% if can? :create, Order %>
-              <% unless session[:cart].nil? %>
-              <li><%= link_to cart_items_path do %>
-                <%= "$" + (cart_total).to_s + " ("+ (current_cart).size.to_s + " items)" %>
-                <span class="glyphicon glyphicon-shopping-cart"></span><% end %></li>
-              <% end %>
-            <% end %>
-
-        <% else %>
-         <li><%= link_to 'LOG IN', login_path %></li>
-         <li><%= link_to 'SIGN UP', signup_path %></li>
+       <li><%= link_to image_tag('cylon_icon.png'), home_path %></li>
+       <li><%= link_to "HOME", home_path %></li>
+       <li><%= link_to "ITEMS", items_path %>
+         <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+         <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+           <div class ="data-dropdown-menu">
+             <li><%= link_to "All Item", items_path %></li>
+             <li><%= link_to "Reorder List", home_path %></li>
+             <li><%= link_to "Add an Item", new_item_path %></li>
+           </div>
+         </ul>
+         <% end %>
+         <% if can? :create, School  %>
+           <li><%= link_to "ADD A SCHOOL", new_school_path %></li>
+         <% end %>
+       </li>
+       <% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
+         <li><%= link_to "PURCHASES", purchases_path %></li>
+         <!-- <li><%= link_to "PRICES", item_prices_path %></li> -->
+         <li><%= link_to "USERS", users_path %>
+           <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+             <div class ="data-dropdown-menu">
+               <li><%= link_to "All Users", users_path %></li>
+               <li><%= link_to "Employees", employees_path %></li>
+               <li><%= link_to "Customers", customers_path %></li>
+             </div>
+           </ul>
+         </li>
+       <% end %>
+       <% if can? :read, School %>
+         <li><%= link_to "SCHOOLS", schools_path %></li>
+       <% end %>
+       <% if can? :edit, Order %>
+         <li><%= link_to "ORDERS", orders_path %></li>
        <% end %>
      </ul>
    </div>
+   <div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <% if logged_in? %>
+         <li>
+           <%= link_to "Welcome, #{current_user.first_name}", user_path(current_user) %>
+           <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+             <div class ="data-dropdown-menu">
+               <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+               <% if can? :create, Order %>
+               <li><%= link_to "Order History", order_history_path %></li><% end %>
+               <li><%= link_to "Logout", logout_path %></li>
+             </div>
+           </ul>
+         </li>
+           <% if can? :create, Order %>
+             <% unless session[:cart].nil? %>
+             <li><%= link_to cart_items_path do %>
+               <%= "$" + (cart_total).to_s + " ("+ (current_cart).size.to_s + " items)" %>
+               <span class="glyphicon glyphicon-shopping-cart"></span><% end %></li>
+             <% end %>
+           <% end %>
+
+       <% else %>
+        <li><%= link_to 'LOG IN', login_path %></li>
+        <li><%= link_to 'SIGN UP', signup_path %></li>
+      <% end %>
+    </ul>
   </div>
+ </div>
 </div>

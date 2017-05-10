@@ -2,11 +2,11 @@
   <h4>No purchases at this time.</h4>
 <% else %>
   <h4>Recent Purchases</h4>
-  <table class="table table-striped">
+  <table class="table table-striped" style="width:70%">
       <tr>
-        <th width="225">Item</th>
-        <th width="150">Quantity</th>
-        <th width="150">Date</th>
+        <th width="155">Item</th>
+        <th width="50">Quantity</th>
+        <th width="120">Date</th>
       </tr>
       <% @purchases.each do |purchase| %>
         <tr>
@@ -17,4 +17,5 @@
       <% end %>
   </table>
 <% end %>
+<%= will_paginate @purchases, renderer: BootstrapPagination::Rails %>
 <p>&nbsp;</p>

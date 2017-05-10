@@ -21,11 +21,17 @@
 		<% if logged_in? && (current_user.role == "admin" || current_user.role == "manager") %>
 			<%= f.input :active, :input_html => { :type => "radio"} %>
     	<%= f.input :role, :collection => User::ROLES, :prompt => "Select..." %>
+		<% else %>
+			<%= f.input :role, as: :hidden, input_html: { value: "customer" } %>
 		<% end %>
 		<br></br>
 
 		<div class="form-actions">
-      <%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => "hollow button" %>
+			<% if logged_in? %>
+				<%= f.submit (@user.new_record? ? "Create the User" : "Update"), :class => "hollow button" %>
+			<% else %>
+      	<%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => "hollow button" %>
+			<% end %>
 			<% if (not current_user.nil?) && ((current_user.role? :admin) || (current_user.role? :manager)) %>
 				<%= link_to 'Cancel',users_path, :class => 'button alert radius' %>
 			<% else %>

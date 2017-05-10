@@ -31,5 +31,5 @@
   </table>
 <% end %>
 </br>
-<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 <p>&nbsp;</p>

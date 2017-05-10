@@ -26,7 +26,12 @@
       <% @order_items.each do |order_item| %>
         <tr>
           <td><%= link_to item_path(order_item.item) do %>
-          <img src="//placehold.it/100x100" class="thumbnail" alt=""><% end %></td>
+            <% if order_item.item.picture_url.nil? %>
+              <img src="//placehold.it/100x100" class="thumbnail" alt="">
+            <% else %>
+              <p><%= image_tag order_item.item.picture_url, height: "100", width: "100" %></p>
+            <% end %>
+            <% end %>
           <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
           <td><%= number_to_currency(order_item.item.current_price) %></td>
           <td>
